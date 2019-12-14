@@ -57,7 +57,7 @@ Use the ssh client to connect to the remote system. The tunnel should now be act
 
 On the remote system, start a Jupyter notebook or console. Run the following code.
 
-```
+```python
 import pandas as pd
 import Constellation_client
 cc = Constellation_client.Constellation()
@@ -67,7 +67,7 @@ df.head()
 
 To ensure two-way communication:
 
-```
+```python
 df = pd.DataFrame({'source.Identifier':['mal@firefly.com']})
 cc.put_dataframe(df)
 ```
@@ -96,7 +96,7 @@ The `Constellation_client.Constellation` class uses the `http` transport by defa
 
 On the remote system, start a Jupyter notebook or console. Run the following code.
 
-```
+```python
 import pandas as pd
 import Constellation_client
 cc = Constellation_client.Constellation(transport='file=/home/user/.Constellation/REST')
@@ -112,14 +112,14 @@ on stderr to notify the user that the shared filesystem transport is being used.
 
 To ensure two-way communication:
 
-```
+```python
 df = pd.DataFrame({'source.Identifier':['mal@firefly.com']})
 cc.put_dataframe(df)
 ```
 
 Alternatively, to avoid having to edit the notebook when switching between the HTTP transport and the shared filesystem transport, the environment variable `Constellation_TRANSPORT` can be set to specify the transport before starting the Jupyter notebook server. The `Constellation()` class discovers the transport as follows.
 
-```
+```python
 ENV_VAR = 'Constellation_TRANSPORT'
 
 class Constellation:
@@ -133,13 +133,13 @@ class Constellation:
 
 Define the environment variable on Linux as:
 
-```
+```bash
 $ export Constellation_TRANSPORT='file=/home/user/.Constellation/REST'
 ```
 
 The Jupyter notebook can then use
 
-```
+```python
 cc = Constellation_client.Constellation()
 ```
 
